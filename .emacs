@@ -46,10 +46,17 @@
 ;(setq default-tab-width 8)		    ; eight space tabs (local religion)
 (setq default-tab-width 4)		    ; four space tabs (local religion)
 (setq-default indent-tabs-mode nil)        ; no tabs, just spaces
+(defun tab-two  () (interactive) (set-variable 'tab-width 2)) ; infidel!
 (defun tab-four  () (interactive) (set-variable 'tab-width 4)) ; infidel!
 (defun tab-eight () (interactive) (set-variable 'tab-width 8)) ; infidel!
+(global-set-key "\M-2" 'tab-four)
 (global-set-key "\M-4" 'tab-four)
 (global-set-key "\M-8" 'tab-eight)
+
+(add-hook 'json-mode-hook
+          (lambda ()
+            (make-local-variable 'js-indent-level)
+            (setq js-indent-level 2)))
 
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
@@ -87,6 +94,10 @@
   (package-refresh-contents) (package-install 'terraform-mode))
 (unless (package-installed-p 'go-mode)
   (package-refresh-contents) (package-install 'go-mode))
+
+(unless (package-installed-p 'magit)
+  (package-refresh-contents) (package-install 'magit))
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;;;
 
@@ -150,3 +161,15 @@
   "Change the current buffer to Latin 1 with Mac line-ends."
   (interactive)
   (set-buffer-file-coding-system 'iso-latin-1-mac t))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (magit go-mode terraform-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

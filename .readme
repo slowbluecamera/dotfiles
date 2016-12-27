@@ -1,0 +1,16 @@
+reminder (because I forget)
+
+dotfiles are managed with "yadm"
+
+yadm is installed on mac using homebrew ("brew install yadm")
+
+Check for updates using standard git commands:
+
+    yadm status - see what has changed
+    yadm add - add file to commit group
+    yadm commit -m
+    yadm push
+    etc.
+    etc.
+
+
