@@ -1,5 +1,5 @@
-# Make vim the default editor
-export EDITOR="vim"
+# Make emacs the default editor
+export EDITOR="emacs"
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
@@ -21,21 +21,9 @@ export MANPAGER="less -X"
 # Always enable colored `grep` output
 export GREP_OPTIONS="--color=auto"
 
-# Link Homebrew casks in `/Applications` rather than `~/Applications`
-#export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
-# Create JAVA_HOME from whatever
-#export JAVA_HOME=`/usr/libexec/java_home`
-
-# Create EC2_HOME (from 'brew install ec2-api-tools')
-#export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.6.13.0/libexec"
-
-# GOPATH
 export GOPATH=$HOME/go
 
-# adev setup
-export ADEV_SW_REPO=/Volumes/pc-software/AdevSoftwareRepo
-export CMAKE_MODULE_PATH=/Users/dbenjamin/cmake-modules
-
+# python virtualenv environments
 export WORKON_HOME=~/.vEnvs
 
+export NVM_DIR="$HOME/.nvm"

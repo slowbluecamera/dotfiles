@@ -46,21 +46,8 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 # If possible, add tab completion for many more commands
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 
-# boot2docker easements
-##export DOCKER_HOST=tcp://192.168.59.103:2375
-#export DOCKER_HOST=tcp://192.168.59.103:2376
-#export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
-#export DOCKER_TLS_VERIFY=1
-
-#docker-ip() {
-#  boot2docker ip 2> /dev/null
-#}
-
 # awscli completer, if we are using it
 complete -C aws_completer aws
 
-# init rbenv shims
-#eval "$(rbenv init -)"
-
-# added by Miniconda2 3.19.0 installer
-#export PATH="/Users/dbenjamin/miniconda2/bin:$PATH"
+# nvm something something, seem's like it's that ruby heckhole all over again.
+. "/usr/local/opt/nvm/nvm.sh"
