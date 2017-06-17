@@ -1,12 +1,20 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
-# Add go bins to path
-export PATH="$PATH:/usr/local/opt/go/libexec/bin"
-# Add local go builds to path
-#export PATH="$PATH:$HOME/go/bin"
-export PATH="$HOME/go/bin:$PATH"
-export PATH="$HOME/go/pact-go-0.0.3:$PATH"
-# prepend rbenv to path
+
+if [ -e /usr/local/opt/go ]; then
+    # Add go bins to path
+    export PATH="$PATH:/usr/local/opt/go/libexec/bin"
+    # Add local go builds to path
+    #export PATH="$PATH:$HOME/go/bin"
+    export PATH="$HOME/go/bin:$PATH"
+    export PATH="$HOME/go/pact-go-0.0.3:$PATH"
+fi
+
+if [ -e /usr/local/opt/yarn ]; then
+    export PATH="$PATH:$HOME/.yarn/bin:$HOME/.yarn-config/global/node_modules/.bin:$(yarn global bin)"
+fi
+
+# prepend rbenv to path (if descending into hell)
 #export PATH="$HOME/.rbenv/bin:$PATH"
 
 # Load the shell dotfiles, and then some:

@@ -27,3 +27,5 @@ export GOPATH=$HOME/go
 export WORKON_HOME=~/.vEnvs
 
 export NVM_DIR="$HOME/.nvm"
+
+export AWS_DEFAULT_PROFILE saml
