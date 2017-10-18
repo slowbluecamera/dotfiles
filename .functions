@@ -324,12 +324,24 @@ t2b(){
 }
 
 # Tabcorp: set up AWS creds via saml login
-tbaws(){
+tabaws(){
     pushd ~/w/aws-adfs-login-master
     . venv/bin/activate
     python aws-adfs.py
     deactivate
     popd
+}
+
+# docker-nuke: stop all containers, remove EVERYTHING
+docker-nuke(){
+    echo "stop all containers"
+    docker stop $(docker ps -a -q)
+    echo "remove all containers"
+    docker rm $(docker ps -a -q)
+    echo "remove all images"
+    docker rmi $(docker images -a -q)
+    echo "remove all volumes"
+    docker volume rm $(docker volume ls -q)
 }
 
 

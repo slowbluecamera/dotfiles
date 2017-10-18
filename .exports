@@ -28,4 +28,5 @@ export WORKON_HOME=~/.vEnvs
 
 export NVM_DIR="$HOME/.nvm"
 
-export AWS_DEFAULT_PROFILE saml
+export AWS_DEFAULT_PROFILE=saml
+export AWS_DEFAULT_REGION=ap-southeast-2

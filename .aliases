@@ -174,3 +174,5 @@ alias awpipi="pip install -i https://pypi.eng.airware.io/simple"
 #alias cvv2="if type -t deactivate > /dev/null; then deactivate; fi; rm -rf venv; virtualenv; . venv/bin/activate"
 
 #eval "$(thefuck --alias)"
+
+alias ghe="git remote set-url origin git@github.tabcorp.com.au:TabDigital/\${PWD##*/}"
