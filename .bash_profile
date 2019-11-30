@@ -58,4 +58,5 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 complete -C aws_completer aws
 
 # nvm something something, seem's like it's that ruby heckhole all over again.
-. "/usr/local/opt/nvm/nvm.sh"
+[ -f /usr/local/opt/nvm/nvm.sh ] && source /usr/local/opt/nvm/nvm.sh
+

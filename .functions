@@ -42,12 +42,12 @@ function fs() {
 }
 
 # Use Git’s colored diff when available
-hash git &>/dev/null
-if [ $? -eq 0 ]; then
-	function diff() {
-		git diff --no-index --color-words "$@"
-	}
-fi
+#hash git &>/dev/null
+#if [ $? -eq 0 ]; then
+#	function diff() {
+#		git diff --no-index --color-words "$@"
+#	}
+#fi
 
 # Create a data URL from a file
 function dataurl() {
@@ -217,37 +217,29 @@ function o() {
 	fi
 }
 
-# `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
-# the `.git` directory, listing directories first. The output gets piped into
-# `less` with options to preserve color and line numbers, unless the output is
-# small enough for one screen.
-function tre() {
-	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX
-}
-
 # cvv
 # - Deactivates currently activated Virtualenv (if any)
-# - Deletes ./venv directory (if any)
-# - Create a new Virtualenv (in ./venv)
+# - Deletes .venv directory (if any)
+# - Create a new Virtualenv (in .venv)
 # - Activates the new Virtualenv
 # - If there is a ‘./requirements.txt’ file, installs it using “pip install -r ..."
 
-function cvv() {
+function cvv2() {
   if type -t deactivate > /dev/null; then
     echo "== deactivate =="
     deactivate
   fi
-  if [ -d venv ]; then
-    echo "== rm -rf venv =="
-    rm -rf venv
+  if [ -d .venv ]; then
+    echo "== rm -rf .venv =="
+    rm -rf .venv
   fi
-  echo "== virtualenv venv =="
-  virtualenv venv
-  echo "== . venv/bin/activate =="
-  . venv/bin/activate
+  echo "== virtualenv .venv =="
+  virtualenv .venv
+  echo "== . .venv/bin/activate =="
+  . .venv/bin/activate
   if [ -f requirements.txt ]; then
     echo "== pip install -r requirements.txt $* =="
-    pip install -r requirements.txt $*
+    pip2 install -r requirements.txt $*
   fi
 }
 
@@ -256,35 +248,26 @@ function cvv3() {
     echo "== deactivate =="
     deactivate
   fi
-  if [ -d venv ]; then
-    echo "== rm -rf venv =="
-    rm -rf venv
+  if [ -d .venv ]; then
+    echo "== rm -rf .venv =="
+    rm -rf .venv
   fi
-  echo "== virtualenv -p python 3 venv =="
-  virtualenv -p python3 venv
-  echo "== . venv/bin/activate =="
-  . venv/bin/activate
+  echo "== virtualenv -p python 3 .venv =="
+  python3 -m venv .venv
+  echo "== . .venv/bin/activate =="
+  . .venv/bin/activate
   if [ -f requirements.txt ]; then
+    echo "== pip install --upgrade pip =="
+    pip install --upgrade pip
     echo "== pip install -r requirements.txt $* =="
     pip install -r requirements.txt $*
   fi
 }
 
-# Airware awcvv
-# - cvv, but with special Airware magic pypi
-
-function oldawcvv() {
-  cvv --trusted-host pypi.airware.corp.msp -i http://pypi.airware.corp.msp/simple
-}
-
-function awcvv() {
-  cvv -i https://pypi.eng.airware.io/simple
-}
-
 function vv() {
-  if [ -d venv ]; then
-    echo "== . venv/bin/activate =="
-    . venv/bin/activate
+  if [ -d .venv ]; then
+    echo "== . .venv/bin/activate =="
+    . .venv/bin/activate
   else
     echo "== :sad face: =="
   fi
@@ -323,16 +306,7 @@ t2b(){
 	fi
 }
 
-# Tabcorp: set up AWS creds via saml login
-tabaws(){
-    pushd ~/w/aws-adfs-login-master
-    . venv/bin/activate
-    python aws-adfs.py
-    deactivate
-    popd
-}
-
-# docker-nuke: stop all containers, remove EVERYTHING
+# docker-nuke: stop all containers, remove EVERYTHING (use "docker prune instead", ok?)
 docker-nuke(){
     echo "stop all containers"
     docker stop $(docker ps -a -q)
@@ -343,6 +317,35 @@ docker-nuke(){
     echo "remove all volumes"
     docker volume rm $(docker volume ls -q)
 }
+
+# LFS pipeline clean (belongs in makefile)
+pipeclean(){
+    echo "scrub .aws-sam"        
+    rm -rf .aws-sam
+    echo "scrub __pycache__"
+    rm -rf `find . -name __pycache__ -type d`
+    echo "scrub egg-info"
+    rm -rf `find . -name "*.egg-info" -type d`
+    echo "scrub pytest_cache"
+    rm -rf `find . -name ".pytest_cache" -type d`
+    echo "scrub .*.s3.policy.json"
+    rm -rf .*.s3.policy.json
+    echo "scrub .*.sam.yaml"
+    rm -rf .*.sam.yaml
+    echo "scrub coverage files"
+    rm -rf .coverage coverage.xml tests.xml
+    echo "scrub .DS_Store"
+    rm -rf `find . -name ".DS_Store" -type f`
+}
+
+# LFS list launch paths for service catalog products
+llp(){
+    for id in `aws servicecatalog search-products --query 'ProductViewSummaries[*].ProductId' --output text`; do
+        aws servicecatalog describe-product --id $id --query 'ProductViewSummary.Name' --output text
+        aws servicecatalog list-launch-paths --product-id $id --query "LaunchPathSummaries[*].[Id,Name]" --output text
+    done
+}
+
 
 
 

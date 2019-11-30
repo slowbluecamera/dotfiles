@@ -34,6 +34,7 @@
 ;(setq win32-downcase-file-names 1)		; downcase all file names
 (setq case-fold-search nil)             ; make searches case-insensitive
 (setq line-number-mode t)               ; put line numbers in mode-line
+(setq column-number-mode t)             ; put column numbers in mode-line
 (display-time)                          ; put time in mode-line
 ;(setq display-time-24hr-format t)		; make it military time
 
