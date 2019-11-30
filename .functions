@@ -346,6 +346,16 @@ llp(){
     done
 }
 
+# what the heck is this?
+docker-dump(){
+    for cc in $(docker ps -a -q); do
+        cc_name=$(docker inspect --format='{{.Name}}' $cc)
+        prefix=${cc}.${cc_name//\/}
+        echo inspecting $prefix
+        docker inspect $cc > $prefix.inspect
+        docker logs $cc &> $prefix.log
+    done
+}
 
 
 
