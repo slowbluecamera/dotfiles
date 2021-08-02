@@ -1,8 +1,11 @@
 
+export AWS_VAULT_BACKEND=pass
+export PASSWORD_STORE_CLIP_TIME=14400
+
 export MY_AWS_DEFAULT_SESSION_NAME=david.benjamin@spaceiq.com
 export MY_AWS_DEFAULT_REGION=ap-southeast-2
 
-export AWS_SHARED_CREDENTIALS_FILE=$HOME/Downloads/credentials
+#export AWS_SHARED_CREDENTIALS_FILE=$HOME/Downloads/credentials
 export AWS_DEFAULT_REGION=$MY_AWS_DEFAULT_REGION
 
 function aka() {
