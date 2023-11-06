@@ -100,16 +100,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# $HOME/.zshrc.d personal init files
+# $HOME/.shrc.d personal init files
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
-for file in ~/.zshrc.d/*.zshrc; do
+for file in ~/.shrc.d/*.shrc; do
   source $file
 done
-
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi

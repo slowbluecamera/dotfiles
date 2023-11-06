@@ -1,0 +1,2 @@
+export AWS_CA_BUNDLE="${HOME}/.certificates/ZscalerRootCertificate-2048-SHA256.crt"
+

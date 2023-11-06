@@ -7,6 +7,6 @@ case $- in
       *) return;;
 esac
 
-for file in ~/.shrc.d/*.shrc; do
+for file in ~/.bashrc.d/*.bashrc; do
   source $file
 done

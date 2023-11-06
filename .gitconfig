@@ -1,7 +1,6 @@
-# This is Git's per-user configuration file.
+
 [user]
 name = David Benjamin
-#email = david@slowbluecamera.com
-email = david.benjamin@latitudefinancial.com
+email = dbenjamin@wesdigital.com.au
 [credential]
 	helper = store
