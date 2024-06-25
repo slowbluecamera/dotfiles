@@ -55,5 +55,7 @@ function parse_git_branch() {
 #export PS2="\[$ORANGE\]→ \[$RESET\]"
 
 #export PS1='\h:\w > '
-export PS1="\[$ORANGE\]\h:\[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\] \[$RESET\]> "
+#export PS1="\[$ORANGE\]\h:\[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\] \[$RESET\]> "
+
+export PS1="\[$ORANGE\]%m:\[$GREEN\]%~\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\] \[$RESET\]> "
 
