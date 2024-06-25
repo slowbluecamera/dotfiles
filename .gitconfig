@@ -4,3 +4,5 @@ name = David Benjamin
 email = david.be@montu.com.au
 [credential]
 	helper = store
+[pull]
+	rebase = false
