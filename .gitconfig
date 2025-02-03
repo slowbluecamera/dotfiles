@@ -6,3 +6,6 @@ email = david.be@montu.com.au
 	helper = store
 [pull]
 	rebase = false
+[alias]
+	hack = town hack
+	sync = town sync
