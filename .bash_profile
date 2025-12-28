@@ -8,3 +8,7 @@ esac
 for file in ~/.shrc.d/*.shrc; do
   source $file
 done
+
+# Netskope CLI Certificate Fix
+source /opt/montu-kandji/netskope-cli-certificate-fix.sh
+
