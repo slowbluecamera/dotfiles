@@ -13,4 +13,12 @@ Check for updates using standard git commands:
     etc.
     etc.
 
+For a clean install on a new or reverted machine:
+
+```
+yadm clone https://github.com/slowbluecamera/dotfiles.git
+or
+yadm clone -b oblio https://github.com/slowbluecamera/dotfiles.git
+```
+
 --
